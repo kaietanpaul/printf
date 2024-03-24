@@ -1,6 +1,12 @@
 # Prerequisites
 *.d
 
+# Temporary .c file
+*.swp
+*.swo
+*.swn
+*.swm
+
 # Object files
 *.o
 *.ko
