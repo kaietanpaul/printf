@@ -2,17 +2,16 @@
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
-# Find the first C file in the directory
-SRC := $(firstword $(wildcard *.c))
+# Find the most recently modified .c file
+LATEST_C := $(shell ls -t *.c | head -n1)
+# Derive the executable name
+TARGET := $(LATEST_C:.c=)
 
-# The target executable name
-TARGET := main
-
-# Default rule to compile the first found C file
-all:
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+# Default rule to compile and run the latest file
+.PHONY: run
+run:
+	$(CC) $(CFLAGS) $(LATEST_C) -o $(TARGET)
+	./$(TARGET)
 
 clean:
 	rm -f $(TARGET) *.o
-
-.PHONY: all clean
