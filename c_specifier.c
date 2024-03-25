@@ -1,7 +1,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-int	ft_printf(const char *format, ...)
+int	c_specifier(const char *format, ...)
 {
 	va_list	arg_box;
 	int	printed_chars;
@@ -24,16 +24,16 @@ int	ft_printf(const char *format, ...)
 			printed_chars += write(1, &format[index], 1);
 		index++;
 	}
-	
+
 	va_end(arg_box);
-	
+
 	return (printed_chars);
 }
 
 int main(void)
 {
-	ft_printf("Hello, World!\n");
-	ft_printf("Character: %c %c %% cc%%c\n", 'U', 'B', 'A', 'D');
-	
+	c_specifier("Hello, World!\n");
+	c_specifier("Character: %c %c %% cc%%c\n", 'U', 'B', 'A', 'D');
+
 	return (0);
 }
