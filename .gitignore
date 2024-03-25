@@ -63,3 +63,6 @@ replit.nix
 *.blob
 main.c
 .ccls-cache
+
+# My temporary files
+main

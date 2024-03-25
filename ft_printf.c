@@ -9,7 +9,7 @@ int	ft_printf(const char *format, ...)
 	char	c;
 
 	index = 0;
-
+	printed_chars = 0;
 	va_start(arg_box, format);
 	c = va_arg(arg_box, int);
 
@@ -28,9 +28,10 @@ int	ft_printf(const char *format, ...)
 	va_end(arg_box);
 	return (printed_chars);
 }
+
 int main(void)
 {
 	ft_printf("Hello, World!\n");
-	ft_printf("Character: %c %c % c\n", 'U');
+	ft_printf("Character: %c %c %% c%c\n", 'U');
 	return (0);
 }

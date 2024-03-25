@@ -1,35 +1,18 @@
-# Compiler
+# Compiler settings
 CC = clang
-
-# Compiler flags
 CFLAGS = -Wall -Wextra -Werror
 
-# Name of the output library
-NAME = libftprintf.a
+# Find the first C file in the directory
+SRC := $(firstword $(wildcard *.c))
 
-# Explicitly list all C source files
-SRCS = 
+# The target executable name
+TARGET := main
 
-# Object files based on the source files
-OBJS = $(SRCS:.c=.o)
+# Default rule to compile the first found C file
+all:
+	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
 
-# Default rule
-all: $(NAME)
-
-# Rule for creating the static library
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
-
-# Rule to prevent unnecessary relinks
-.PHONY: all clean fclean re
-
-# Rule to clean object files
 clean:
-	rm -f $(OBJS)
+	rm -f $(TARGET) *.o
 
-# Rule to clean everything (object files + library)
-fclean: clean
-	rm -f $(NAME)
-
-# Rule to re-make everything
-re: fclean all
+.PHONY: all clean
