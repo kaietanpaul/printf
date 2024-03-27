@@ -1,39 +1,54 @@
 #include <stdarg.h>
 #include <unistd.h>
+#include "c_specifier.c"
 
-int	ft_printf(const char *format, ...)
-{
-	va_list	arg_box;
-	int	printed_chars;
-	int	index;
-	char	c;
+static int check_specifier(va_list arg_box, char specifier) {
+	int len;
 
-	index = 0;
-	printed_chars = 0;
-	va_start(arg_box, format);
-
-	while (format[index] != '\0')
-	{
-		if (format[index] == '%' && format[index + 1] == 'c')
-		{
-			c = va_arg(arg_box, int);
-			printed_chars += write(1, &c, 1);
-			index++;
-		}
-		else
-			printed_chars += write(1, &format[index], 1);
-		index++;
-	}
-	
-	va_end(arg_box);
-	
-	return (printed_chars);
+	len = 0;
+	if (specifier == 'c')
+		len += c_specifier(va_arg(arg_box, int));
+	// else if (specifier == 's')
+	// 	len += s_specifier(va_arg(arg_box, char *));
+	// else if (specifier == 'i' || specifier == 'd')
+	// 	len += id_specifier(va_arg(arg_box, int));
+	// else if (specifier == 'x' || specifier == 'X')
+	// 	len += id_specifier(va_arg(arg_box, unsigned int));
+	// else if (specifier == 'p')
+	// 	len += p_specifier(va_arg(arg_box, unsigned int));
+	return (len);
 }
 
-int main(void)
+int ft_printf(const char *format, ...) {
+	va_list arg_box;
+	int index;
+	int len;
+
+
+	va_start(arg_box, format);
+
+	index = 0;
+	len = 0;
+	while (format[index] != '\0')
+	{
+		if (format[index] == '%')
+		{
+			index++;
+			len += check_specifier(arg_box, format[index]);
+		}
+		else
+			len += write(1, &format[index], 1);
+		index++;
+	}
+	va_end(arg_box);
+	return (len);
+}
+
+int	main(void)
 {
-	ft_printf("Hello, World!\n");
-	ft_printf("Character: %c %c %% cc%%c\n", 'U', 'B', 'A', 'D');
 	
+	ft_printf("C: 123%c\n", 52);
+	ft_printf("123%c", 52);
+
 	return (0);
 }
