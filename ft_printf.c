@@ -1,6 +1,8 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include "c_specifier.c"
+#include "s_specifier.c"
+
 
 static int check_specifier(va_list arg_box, char specifier) {
 	int len;
@@ -8,8 +10,8 @@ static int check_specifier(va_list arg_box, char specifier) {
 	len = 0;
 	if (specifier == 'c')
 		len += c_specifier(va_arg(arg_box, int));
-	// else if (specifier == 's')
-	// 	len += s_specifier(va_arg(arg_box, char *));
+	else if (specifier == 's')
+		len += s_specifier(va_arg(arg_box, char *));
 	// else if (specifier == 'i' || specifier == 'd')
 	// 	len += id_specifier(va_arg(arg_box, int));
 	// else if (specifier == 'x' || specifier == 'X')
@@ -47,8 +49,8 @@ int ft_printf(const char *format, ...) {
 int	main(void)
 {
 	
-	ft_printf("C: 123%c\n", 52);
-	ft_printf("123%c", 52);
+	ft_printf("C: 1234%c6\n", 53);
+	ft_printf("S: 1234%ssix\n", "five");
 
 	return (0);
 }
