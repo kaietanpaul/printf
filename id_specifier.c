@@ -28,7 +28,8 @@ int	id_specifier(int c)
 	else if (c > 9)
 	{
 		new_num = c % 10 + '0';
-		printed_chars += id_specifier(c /= 10);
+		c /= 10;
+		printed_chars += id_specifier(c);
 		printed_chars += write(1, &new_num, 1);
 	}
 	else
@@ -38,10 +39,12 @@ int	id_specifier(int c)
 	}
 	return (printed_chars);
 }
-int main(void)
+
+int	main(void)
 {
-	int printed_chars;
-	printed_chars = id_specifier(-01 + 200);
+	int	printed_chars;
+
+	printed_chars = id_specifier(-4535);
 	printf("\n%d\n", printed_chars);
 	return (0);
 }
