@@ -56,7 +56,7 @@ int	main(void)
 	ft_printf("C: 1234%c6\n", '5');
 	ft_printf("S: 1234%ssix\n", "five");
 	ft_printf("Percent: 1234%%6\n");
-	ft_printf("id: 1234%i6%d%d\n", 5, 78, -2147483648 );
+	ft_printf("id: 1234%i6%d%d\n", 5, 78, -2147483648);
 	ft_printf("xX: 1234%x and 9,10,%X\n", 5, 17);
-	return 0;
+	return (0);
 }
