@@ -11,15 +11,11 @@ int	u_specifier(unsigned int c)
 		return (printed_chars += write(1, "0", 1));
 	else
 	{
-		printed_chars += u_specifier(c / 10);
+		if (c > 9)
+			printed_chars += u_specifier(c / 10);
 		new_num = c % 10 + '0';
 		printed_chars += write(1, &new_num, 1);
+
 	}
 	return (printed_chars);
-}
-
-int main(void)
-{
-	u_specifier(255);
-	return (0);
 }
