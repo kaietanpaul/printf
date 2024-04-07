@@ -1,5 +1,4 @@
-#include <unistd.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
 static int	edge_case(int c)
 {
