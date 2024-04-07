@@ -6,7 +6,7 @@ int	p_specifier(void *address)
 
 	printed_chars = 0;
 	if (address == 0)
-		return (printed_chars += write(1, "0x0", 3));
+		return (printed_chars += write(1, "(nil)", 5));
 	else
 	{
 		printed_chars += write(1, "0x", 2);
