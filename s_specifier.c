@@ -8,7 +8,7 @@ int	s_specifier(char *c)
 	index = 0;
 	printed_chars = 0;
 	if (c == NULL)
-		return (printed_chars += write(1, "(nil)", 5));
+		return (printed_chars += write(1, "(null)", 6));
 	while (c[index] != '\0')
 	{
 		printed_chars += write(1, &c[index], 1);
