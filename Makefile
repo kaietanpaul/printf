@@ -5,7 +5,7 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
 # Name of the output library
-NAME = ft_printf.a
+NAME = libftprintf.a
 
 # Explicitly list all C source files
 SRCS = ft_printf.c c_specifier.c id_specifier.c s_specifier.c u_specifier.c p_specifier.c x_specifier.c
